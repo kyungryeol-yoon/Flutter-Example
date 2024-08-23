@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,27 +12,20 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('메인 화면'),
+        title: Text("메인 화면"),
       ),
       body: Center(
-        // child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          // children: [
-          //   ElevatedButton(onPressed: () {
-          //     Navigator.pushNamed(context, "/board/list");
-          //   },
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/board/list");
-             },
-            child: Text("게시글 목록"),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blueAccent,
-              foregroundColor: Colors.white
-            ),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/board/list");
+          },
+          child: Text("게시글 목록"),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blueAccent,
+            foregroundColor: Colors.white,
+          ),
         ),
-      )
+      ),
     );
   }
 }

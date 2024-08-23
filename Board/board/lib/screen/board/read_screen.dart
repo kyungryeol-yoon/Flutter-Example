@@ -55,7 +55,7 @@ class _ReadScreenState extends State<ReadScreen> {
   /// 👩‍💻 게시글 조회 요청
   ///
   Future<Board> getBoard(int no) async {
-    var url = "http://10.0.2.2:8000/board/$no";
+    var url = "http://10.0.2.2:8000/v1/board/$no";
     try {
       var response = await http.get(Uri.parse(url));
       print("::::: response - body :::::");
@@ -79,7 +79,7 @@ class _ReadScreenState extends State<ReadScreen> {
 
   /// 게시글 삭제 요청
   Future<bool> deleteBoard(int no) async {
-    var url = "http://10.0.2.2:8080/board/$no";
+    var url = "http://10.0.2.2:8000/v1/board/$no";
     try {
       var response = await http.delete(Uri.parse(url));
       print("::::: response - statusCode :::::");

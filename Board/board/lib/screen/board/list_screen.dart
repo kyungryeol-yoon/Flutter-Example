@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:board/models/board.dart';
 import 'package:http/http.dart' as http;
@@ -25,7 +27,15 @@ class _ListScreenState extends State<ListScreen> {
 
   // 🌞 게시글 목록 데이터 요청
   Future<List<Board>> getBoardList() async {
-    var url = "http://10.0.2.2:8000/board";
+    var url = "http://10.0.2.2:8000/v1/board";
+    if (defaultTargetPlatform == TargetPlatform.android){
+      print("Android");
+      url = "http://10.0.2.2:8000/v1/board";
+    } else if (defaultTargetPlatform == TargetPlatform.windows){
+      print("Windows");
+      url = "http://localhost:8000/v1/board";
+    }
+    
 
     List<Board> list = [];
     try {
@@ -140,7 +150,7 @@ class _ListScreenState extends State<ListScreen> {
 
   /// 게시글 삭제 요청
   Future<bool> deleteBoard(int? no) async {
-    var url = "http://10.0.2.2:8080/board/$no";
+    var url = "http://10.0.2.2:8080/v1/board/$no";
     try {
       var response = await http.delete(Uri.parse(url));
       print("::::: response - statusCode :::::");
