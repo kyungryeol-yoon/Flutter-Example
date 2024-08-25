@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,7 +45,18 @@ class _UpdateScreenState extends State<UpdateScreen> {
   /// 👩‍💻 게시글 조회 요청
   ///
   Future<void> getBoard(int no) async {
-    var url = "http://10.0.2.2:8000/v1/board/$no";
+    var url = "http://localhost:8000/v1/board/$no";
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      print("Android");
+      url = "http://10.0.2.2:8000/v1/board/$no";
+    } else if (defaultTargetPlatform == TargetPlatform.windows) {
+      print("Windows");
+      url = "http://localhost:8000/v1/board/$no";
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      print("IOS");
+      url = "http://localhost:8000/v1/board/$no";
+    }
+
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -65,7 +77,17 @@ class _UpdateScreenState extends State<UpdateScreen> {
   /// 게시글 수정 요청
   Future<void> updateBoard() async {
     if (_formKey.currentState!.validate()) {
-      var url = "http://10.0.2.2:8000/v1/board";
+      var url = "http://localhost:8000/v1/board";
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        print("Android");
+        url = "http://10.0.2.2:8000/v1/board";
+      } else if (defaultTargetPlatform == TargetPlatform.windows) {
+        print("Windows");
+        url = "http://localhost:8000/v1/board";
+      } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+        print("IOS");
+        url = "http://localhost:8000/v1/board";
+      }
       try {
         var response = await http.put(
           Uri.parse(url),
@@ -105,7 +127,18 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   /// 게시글 삭제 요청
   Future<bool> deleteBoard(int no) async {
-    var url = "http://10.0.2.2:8000/v1/board/$no";
+    var url = "http://localhost:8000/v1/board/$no";
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      print("Android");
+      url = "http://10.0.2.2:8000/v1/board/$no";
+    } else if (defaultTargetPlatform == TargetPlatform.windows) {
+      print("Windows");
+      url = "http://localhost:8000/v1/board/$no";
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      print("IOS");
+      url = "http://localhost:8000/v1/board/$no";
+    }
+
     try {
       var response = await http.delete(Uri.parse(url));
       print("::::: response - statusCode :::::");

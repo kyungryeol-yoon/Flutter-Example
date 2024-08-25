@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +18,17 @@ class _InsertScreenState extends State<InsertScreen> {
 
   Future<void> insert() async {
     if (_formKey.currentState!.validate()) {
-      var url = "http://10.0.2.2:8000/v1/board";
+      var url = "http://localhost:8000/v1/board";
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        print("Android");
+        url = "http://10.0.2.2:8000/v1/board";
+      } else if (defaultTargetPlatform == TargetPlatform.windows) {
+        print("Windows");
+        url = "http://localhost:8000/v1/board";
+      } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+        print("IOS");
+        url = "http://localhost:8000/v1/board";
+      }
       try {
         var response = await http.post(
           Uri.parse(url),

@@ -27,16 +27,18 @@ class _ListScreenState extends State<ListScreen> {
 
   // 🌞 게시글 목록 데이터 요청
   Future<List<Board>> getBoardList() async {
-    var url = "http://10.0.2.2:8000/v1/board";
-    if (defaultTargetPlatform == TargetPlatform.android){
+    var url = "http://localhost:8000/v1/board";
+    if (defaultTargetPlatform == TargetPlatform.android) {
       print("Android");
       url = "http://10.0.2.2:8000/v1/board";
-    } else if (defaultTargetPlatform == TargetPlatform.windows){
+    } else if (defaultTargetPlatform == TargetPlatform.windows) {
       print("Windows");
+      url = "http://localhost:8000/v1/board";
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      print("IOS");
       url = "http://localhost:8000/v1/board";
     }
     
-
     List<Board> list = [];
     try {
       var response = await http.get(Uri.parse(url));
@@ -150,7 +152,18 @@ class _ListScreenState extends State<ListScreen> {
 
   /// 게시글 삭제 요청
   Future<bool> deleteBoard(int? no) async {
-    var url = "http://10.0.2.2:8080/v1/board/$no";
+    var url = "http://localhost:8000/v1/board/$no";
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      print("Android");
+      url = "http://10.0.2.2:8000/v1/board/$no";
+    } else if (defaultTargetPlatform == TargetPlatform.windows) {
+      print("Windows");
+      url = "http://localhost:8000/v1/board/$no";
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      print("IOS");
+      url = "http://localhost:8000/v1/board/$no";
+    }
+    
     try {
       var response = await http.delete(Uri.parse(url));
       print("::::: response - statusCode :::::");
