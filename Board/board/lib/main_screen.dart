@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+  static String get routeName => 'board';
 
   @override
   State<MainScreen> createState() => _MainScreenState();
