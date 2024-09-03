@@ -1,4 +1,3 @@
-
 import 'package:board/common/const/colors.dart';
 import 'package:board/common/layout/default_layout.dart';
 import 'package:dio/dio.dart';
@@ -10,7 +9,6 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return DefaultLayout(
       backgroundColor: PRIMARY_COLOR,
       child: SizedBox(
